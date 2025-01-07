@@ -43,21 +43,20 @@ btnScale.addEventListener("click", (e) => {
   display.innerHTML = ""
   display.innerHTML = "Scale Data"
 
-  //testing functions and displaying scales
-  //displayToSpan(displayArray("Chromatic Scale:", createChromaticEnharmonic(noteAlpha)), display)
-  //displayToSpan(displayArray(`Chromatic Scale (#):`, createChromaticUnifiedAccidental("#")), display)
-  //displayToSpan(displayArray(`Chromatic Scale (b):`, createChromaticUnifiedAccidental("b")), display)
-  displayToSpan(displayArray(`Circle of Fifths (#):`, createCircleOfFifths("#", 8)), display)
-  displayToSpan(displayArray(`Circle of Fifths (b):`, createCircleOfFifths("b", 8)), display)
   let ionianKey = getIonianRoot(keyCtrl.value, modeCtrl.value)
   let ionianScale = createMajorScale(ionianKey)
   let modeScale = createModePattern(modeCtrl.value, createMajorScale(ionianKey))
   let accidental = determineAccidentalForMajorKey(ionianKey)
   let chromaticScale = createChromaticUnifiedAccidental(accidental)
-  console.log(chromaticScale)
+
+  displayToSpan(displayArray(`Scale of ${keyCtrl.value} ${modeCtrl.value}: `, modeScale), display )
   displayToSpan(`${keyCtrl.value} ${modeCtrl.value} comes from ${ionianKey} Ionian`, display)
   displayToSpan(displayArray(`Scale of ${ionianKey} Ionian: `, ionianScale), display )
-  displayToSpan(displayArray(`Scale of ${keyCtrl.value} ${modeCtrl.value}: `, modeScale), display )
+  displayToSpan(displayArray(`Circle of Fifths (#):`, createCircleOfFifths("#", 8)), display)
+  displayToSpan(displayArray(`Circle of Fifths (b):`, createCircleOfFifths("b", 8)), display)
+
+  //console.log(chromaticScale)
+
 
   document.querySelectorAll(".cell").forEach((elem) => {
     setNoteNum(elem, chromaticScale)
@@ -91,12 +90,12 @@ btnScale.addEventListener("click", (e) => {
 function testScales() {
   //display.innerHTML = ""
   let testNote = "C"
+  displayToSpan(displayArray(`Scale of ${testNote} Major:`, createMajorScale(testNote)), display )
+  displayToSpan(displayArray(`Circle of Fifths (#):`, createCircleOfFifths("#", 8)), display)
+  displayToSpan(displayArray(`Circle of Fifths (b):`, createCircleOfFifths("b", 8)), display)
   displayToSpan(displayArray("Chromatic Scale:", createChromaticEnharmonic(noteAlpha)), display)
   //displayToSpan(displayArray(`Chromatic Scale (#):`, createChromaticUnifiedAccidental("#")), display)
   //displayToSpan(displayArray(`Chromatic Scale (b):`, createChromaticUnifiedAccidental("b")), display)
-  displayToSpan(displayArray(`Circle of Fifths (#):`, createCircleOfFifths("#", 8)), display)
-  displayToSpan(displayArray(`Circle of Fifths (b):`, createCircleOfFifths("b", 8)), display)
-  displayToSpan(displayArray(`Scale of ${testNote} Major:`, createMajorScale(testNote)), display )
 
 }
 
