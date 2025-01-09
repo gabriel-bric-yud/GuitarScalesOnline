@@ -20,7 +20,7 @@ const audioCtx = new (window.AudioContext || window.webkit.AudioContext)();
 //Global Variables////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 let numRows = 6;
-let numColumns = 25;
+let numColumns = 21;
 let tuningInterval = 5
 let recordingInProcess = false;
 let compositionList = []

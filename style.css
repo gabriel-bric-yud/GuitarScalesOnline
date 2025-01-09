@@ -46,7 +46,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   width: 95vw;
-  height: 95vw;
+  height: 50vw;
   margin: 10px auto;
   border-radius: 5px;
   background-color: black;
@@ -78,9 +78,30 @@ body {
 
 }
 
-.sideLabel,.bottomLabel {
+.sideLabel, .bottomLabel {
   display: none;
+  position: absolute;
+  text-align: center;
+  right: 100%;
+  top: 0%;
+  background-color: navy;
+  padding: 10px;
+  border-radius: 50%;
+  align-self: top;
+  align-content: center;
 }
+
+  
+.bottomLabel {
+  display: grid;
+  right: -7px;
+  justify-self: center;
+  top: 100%;
+
+  text-align: center;
+  background-color: transparent;
+}
+
 
 
 .ctrl {
@@ -183,22 +204,10 @@ body {
     font-size: 17px;
   }
 
-  .sideLabel, .bottomLabel {
+
+
+  .sideLabel {
     display: grid;
-    position: absolute;
-    right: 100%;
-    top: 0%;
-    background-color: navy;
-    padding: 10px;
-    border-radius: 50%;
-    align-self: top;
-    align-content: center;
-  }
-  
-  .bottomLabel {
-    top: 100%;
-    right: auto;
-    background-color: transparent;
   }
 
 
