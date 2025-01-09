@@ -24,9 +24,13 @@ let numColumns = 25;
 let tuningInterval = 5
 let tuningShift = 1
 let recordingInProcess = false;
-let mousePress = false
 let compositionList = []
-let currentComposition = []
+let composition = []
+
+let mousePress = false
+let touchPress = false
+
+
 
 
 
@@ -119,21 +123,31 @@ window.addEventListener("resize", (e) => {
 })
 
 document.addEventListener("mousedown", (e) => {
-  if (mousePress == false) {
+  if (mousePress == false && touchPress == false) {
     mousePress = true;
+    touchPress = true;
   }    
 })
 
+document.addEventListener('touchstart', (e) => {
+  e.preventDefault()
+  if (mousePress == false && touchPress == false) {
+    mousePress = true;
+    touchPress = true;
+  }   
+}, {passive: false})
+
+
 btnRecord.addEventListener("click", (e) => {
   if (recordingInProcess != true) {
-    currentComposition = []
+    composition = []
     recordingInProcess = true
     btnRecord.style.border = "20px solid red"
   }
   else {
-    console.log(currentComposition)
-    convertToTab(currentComposition, tabContainer)
-    compositionList.push(currentComposition)
+    console.log(composition)
+    convertToTab(composition, tabContainer)
+    compositionList.push(composition)
     console.log(compositionList)
     recordingInProcess = false
     btnRecord.style.border = "none"
@@ -147,10 +161,10 @@ btnListen.addEventListener("click", (e) => {
   let index = 0
 
   songPlayback = setInterval((e) => {
-    if (index < currentComposition.length) {
-      playOsc(currentComposition[index].dataset.freq);
-      console.log(currentComposition[index].dataset.freq)
-      currentComposition[index].classList.add("play")
+    if (index < composition.length) {
+      playOsc(composition[index].dataset.freq);
+      console.log(composition[index].dataset.freq)
+      composition[index].classList.add("play")
       index++
     }
     else {
@@ -317,6 +331,46 @@ function createCell(col, row) {
   let gainNode
   let playing = false
 
+  cell.addEventListener('touchstart', (e) => {
+    e.preventDefault()
+    if (e.touches.length > 1) {  
+      e.preventDefault();
+    }
+
+    if (playing == false) {
+      if (cell.dataset.diatonic != "f") {
+        cell.classList.add("play")
+        let oscData = createOscInteracive(cell.dataset.freq, gainNode)
+
+        osc = oscData[0]
+        gainNode = oscData[1]
+        osc.start(audioCtx.currentTime)
+        gainNode.gain.setTargetAtTime(0.1, audioCtx.currentTime, .02);
+        playing = true
+        if (recordingInProcess == true) {
+          composition.push(cell)
+        }
+      }
+    }
+
+  }, {passive: false})
+
+
+  element.addEventListener('touchend', (e) => {
+    if (playing == true) {
+      gainNode.gain.setTargetAtTime(0, audioCtx.currentTime, .1);
+      osc.stop(audioCtx.currentTime + 0.5)
+      setTimeout(() => {
+        osc.disconnect()
+      }, 100)
+
+    }
+    cell.classList.remove("play")
+    playing = false
+    touchPress = false
+    mousePress = false
+  })
+
   cell.addEventListener("mousedown", (e) => {
     if (playing == false) {
       if (cell.dataset.diatonic != "f") {
@@ -329,11 +383,12 @@ function createCell(col, row) {
         gainNode.gain.setTargetAtTime(0.1, audioCtx.currentTime, .02);
         playing = true
         if (recordingInProcess == true) {
-          currentComposition.push(cell)
+          composition.push(cell)
         }
       }
     }
   })
+
 
   cell.addEventListener("mouseenter", (e) => {
     if (mousePress && playing == false) { 
@@ -346,7 +401,7 @@ function createCell(col, row) {
         gainNode.gain.setTargetAtTime(0.1, audioCtx.currentTime, .02);
         playing = true
         if (recordingInProcess == true) {
-          currentComposition.push(cell)
+          composition.push(cell)
         }
       }
 
@@ -366,6 +421,7 @@ function createCell(col, row) {
     cell.classList.remove("play")
     playing = false
     mousePress = false
+    touchPress = false
   })
 
   return cell;
