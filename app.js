@@ -436,7 +436,7 @@ function convertToTab(compositionArray, parent) {
 
   for (let i = 0; i < compositionArray.length; i++) {
     let currentString = compositionArray[i].dataset.stringNum
-    let currentFret = compositionArray[i].dataset.col
+    let currentFret = Number(compositionArray[i].dataset.col) - 1
     tabArray[currentMeasure][currentString - 1].push({ fret: currentFret, index: noteCounter})
     noteCounter + 1 < 8 ? noteCounter++ : noteCounter = 0
 
