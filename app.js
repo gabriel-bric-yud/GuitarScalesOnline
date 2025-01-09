@@ -356,7 +356,7 @@ function createCell(col, row) {
   }, {passive: false})
 
 
-  element.addEventListener('touchend', (e) => {
+  cell.addEventListener('touchend', (e) => {
     if (playing == true) {
       gainNode.gain.setTargetAtTime(0, audioCtx.currentTime, .1);
       osc.stop(audioCtx.currentTime + 0.5)
