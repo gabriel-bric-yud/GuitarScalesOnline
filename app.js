@@ -22,7 +22,6 @@ const audioCtx = new (window.AudioContext || window.webkit.AudioContext)();
 let numRows = 6;
 let numColumns = 25;
 let tuningInterval = 5
-let tuningShift = 1
 let recordingInProcess = false;
 let compositionList = []
 let composition = []
@@ -122,6 +121,43 @@ window.addEventListener("resize", (e) => {
   })
 })
 
+
+
+btnRecord.addEventListener("click", (e) => {
+  if (recordingInProcess != true) {
+    composition = []
+    recordingInProcess = true
+    btnRecord.style.border = "20px solid red"
+  }
+  else {
+    convertToTab(composition, tabContainer)
+    compositionList.push(composition)
+    recordingInProcess = false
+    btnRecord.style.border = "none"
+  }
+})
+
+
+btnListen.addEventListener("click", (e) => {
+  let songPlayback
+  let index = 0
+
+  songPlayback = setInterval((e) => {
+    if (index < composition.length) {
+      playOsc(composition[index].dataset.freq);
+      composition[index].classList.add("play")
+      index++
+    }
+    else {
+      clearInterval(songPlayback)
+    }
+
+  },350)
+
+})
+
+
+
 document.addEventListener("mousedown", (e) => {
   if (mousePress == false && touchPress == false) {
     mousePress = true;
@@ -135,171 +171,6 @@ document.addEventListener('touchstart', (e) => {
     touchPress = true;
   }   
 }, {passive: false})
-
-
-btnRecord.addEventListener("click", (e) => {
-  if (recordingInProcess != true) {
-    composition = []
-    recordingInProcess = true
-    btnRecord.style.border = "20px solid red"
-  }
-  else {
-    console.log(composition)
-    convertToTab(composition, tabContainer)
-    compositionList.push(composition)
-    console.log(compositionList)
-    recordingInProcess = false
-    btnRecord.style.border = "none"
-
-  }
-
-})
-
-
-
-btnListen.addEventListener("click", (e) => {
-  let songPlayback
-  let index = 0
-
-  songPlayback = setInterval((e) => {
-    if (index < composition.length) {
-      playOsc(composition[index].dataset.freq);
-      console.log(composition[index].dataset.freq)
-      composition[index].classList.add("play")
-      index++
-    }
-    else {
-      clearInterval(songPlayback)
-    }
-
-  },350)
-
-})
-
-
-//Play Audio Functions////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-function createOscInteracive(freq, gainNode) {
-  let osc
-  //let filterNode = audioCtx.createBiquadFilter();
-  //filterNode.type = "highpass"
-  //filterNode.frequency.setValueAtTime(1000, audioCtx.currentTime);
-  gainNode = audioCtx.createGain();
-  gainNode.gain.value = 0.0;
-  osc = audioCtx.createOscillator();
-  osc.type = "sine"// type//"sawtooth" //"square";
-  osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-  osc.connect(gainNode).connect(audioCtx.destination); //.connect(filterNode)
-  return [osc, gainNode]
-}
-
-
-function playOsc(freq) {
-  let osc
-  let gainNode = audioCtx.createGain();
-  gainNode.gain.value = 0.0;
-  osc = audioCtx.createOscillator();
-  osc.type = "sine"// type//"sawtooth" //"square";
-  osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-  osc.connect(gainNode).connect(audioCtx.destination);
-  osc.start(audioCtx.currentTime)
-  gainNode.gain.setTargetAtTime(0.1, audioCtx.currentTime, .02);
-  gainNode.gain.setTargetAtTime(0, audioCtx.currentTime + 0.50, .1);
-  osc.stop(audioCtx.currentTime + 0.5)
-  setTimeout(() => {
-    osc.disconnect()
-  }, 350)
-}
-
-//Create Tab Functions////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-function writeCustomTabForString(length, noteList, stringName) {
-  let dash = "--"
-  let txt = stringName + "|" + "-"
-  let currentNote = 0
-
-  for (let i = 0; i < (length); i++) {
-    if (noteList != null && currentNote < noteList.length) {
-      if (noteList[currentNote].index * 3 == i) {
-        if (Number(noteList[currentNote].fret) < 10) {
-          txt += "-"
-
-        }
-        txt += noteList[currentNote].fret
-        currentNote += 1
-        
-      }
-      else {
-        txt += dash
-      }
-    }
-    else {
-      txt += dash
-    }
-  }  
-  return txt
-}
-
-
-function convertToTab(compositionArray, parent) {
-  parent.value = ""
-  let length = Math.ceil(parent.getAttribute("cols") / 4.5)
-  let tabArray = []
-  let totalMeasures = Math.ceil(compositionArray.length / 8) 
-  let currentMeasure = 0;
-  let noteCounter = 0
-  parent.setAttribute('rows', `${totalMeasures*8}`);
-
-  for (let i = 0; i < totalMeasures; i++ ) {
-    tabArray.push([[], [], [], [], [], []])
-  }
-
-  for (let i = 0; i < compositionArray.length; i++) {
-    let currentString = compositionArray[i].dataset.stringNum
-    let currentFret = compositionArray[i].dataset.col
-    tabArray[currentMeasure][currentString - 1].push({ fret: currentFret, index: noteCounter})
-    noteCounter + 1 < 8 ? noteCounter++ : noteCounter = 0
-
-    if (noteCounter == 0 && i != 0 || i == compositionArray.length - 1 ) {
-      parent.value += writeCustomTabForString(length, tabArray[currentMeasure][0], "e") + "\n"
-      parent.value += writeCustomTabForString(length, tabArray[currentMeasure][1], "b") + "\n"
-      parent.value += writeCustomTabForString(length, tabArray[currentMeasure][2], "g") + "\n"
-      parent.value += writeCustomTabForString(length, tabArray[currentMeasure][3], "D") + "\n"
-      parent.value += writeCustomTabForString(length, tabArray[currentMeasure][4], "A") + "\n"
-      parent.value += writeCustomTabForString(length, tabArray[currentMeasure][5], "E") + "\n\n\n"
-      currentMeasure++
-
-      if (i == compositionArray.length - 1) {
-        break
-      }
-    }
-
-  }
-}
-
-function createEmptyStringForTab(length, repeats, string) {
-  let dash = "-  "
-  let txt = `|${dash.repeat(length)}`
-  return `${string}${txt.repeat(repeats)}`
-}
-
-
-function createEpmtyTabStructure(length) {
-  console.log(length)
-  let measureLength = length / 2
-  let numMeasures = 3
-  let stringArray = [createEmptyStringForTab(measureLength, numMeasures, "e") + "\n",
-    createEmptyStringForTab(measureLength, numMeasures, "b") + "\n",
-    createEmptyStringForTab(measureLength, numMeasures, "g") + "\n",
-    createEmptyStringForTab(measureLength, numMeasures, "D") + "\n",
-    createEmptyStringForTab(measureLength, numMeasures, "A") + "\n",
-    createEmptyStringForTab(measureLength, numMeasures, "E") + "\n"
-  ]
-  return stringArray
-
-}
-
 
 
 
@@ -444,10 +315,8 @@ function createGrid(col, row) {
 }
 
 function createGuitar(col) {
-  tuningShift = 0
   createRow(col, 6)
   createRow(col, 5)
-  tuningShift +=1
 
   for (let i = 4; i >= 1; i--) {
     createRow(col ,i)
@@ -486,11 +355,141 @@ function getStringNum(row) {
 
 
 
+
+//Play Audio Functions////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+function createOscInteracive(freq, gainNode) {
+  let osc
+  //let filterNode = audioCtx.createBiquadFilter();
+  //filterNode.type = "highpass"
+  //filterNode.frequency.setValueAtTime(1000, audioCtx.currentTime);
+  gainNode = audioCtx.createGain();
+  gainNode.gain.value = 0.0;
+  osc = audioCtx.createOscillator();
+  osc.type = "sine"// type//"sawtooth" //"square";
+  osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+  osc.connect(gainNode).connect(audioCtx.destination); //.connect(filterNode)
+  return [osc, gainNode]
+}
+
+
+function playOsc(freq) {
+  let osc
+  let gainNode = audioCtx.createGain();
+  gainNode.gain.value = 0.0;
+  osc = audioCtx.createOscillator();
+  osc.type = "sine"// type//"sawtooth" //"square";
+  osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+  osc.connect(gainNode).connect(audioCtx.destination);
+  osc.start(audioCtx.currentTime)
+  gainNode.gain.setTargetAtTime(0.1, audioCtx.currentTime, .02);
+  gainNode.gain.setTargetAtTime(0, audioCtx.currentTime + 0.50, .1);
+  osc.stop(audioCtx.currentTime + 0.5)
+  setTimeout(() => {
+    osc.disconnect()
+  }, 350)
+}
+
+//Create Tab Functions////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function writeCustomTabForString(length, noteList, stringName) {
+  let dash = "--"
+  let txt = stringName + "|" + "-"
+  let currentNote = 0
+
+  for (let i = 0; i < (length); i++) {
+    if (noteList != null && currentNote < noteList.length) {
+      if (noteList[currentNote].index * 3 == i) {
+        if (Number(noteList[currentNote].fret) < 10) {
+          txt += "-"
+
+        }
+        txt += noteList[currentNote].fret
+        currentNote += 1
+        
+      }
+      else {
+        txt += dash
+      }
+    }
+    else {
+      txt += dash
+    }
+  }  
+  return txt
+}
+
+
+function convertToTab(compositionArray, parent) {
+  parent.value = ""
+  let length = Math.ceil(parent.getAttribute("cols") / 4.5)
+  let tabArray = []
+  let totalMeasures = Math.ceil(compositionArray.length / 8) 
+  let currentMeasure = 0;
+  let noteCounter = 0
+  parent.setAttribute('rows', `${totalMeasures*8}`);
+
+  for (let i = 0; i < totalMeasures; i++ ) {
+    tabArray.push([[], [], [], [], [], []])
+  }
+
+  for (let i = 0; i < compositionArray.length; i++) {
+    let currentString = compositionArray[i].dataset.stringNum
+    let currentFret = compositionArray[i].dataset.col
+    tabArray[currentMeasure][currentString - 1].push({ fret: currentFret, index: noteCounter})
+    noteCounter + 1 < 8 ? noteCounter++ : noteCounter = 0
+
+    if (noteCounter == 0 && i != 0 || i == compositionArray.length - 1 ) {
+      parent.value += writeCustomTabForString(length, tabArray[currentMeasure][0], "e") + "\n"
+      parent.value += writeCustomTabForString(length, tabArray[currentMeasure][1], "b") + "\n"
+      parent.value += writeCustomTabForString(length, tabArray[currentMeasure][2], "g") + "\n"
+      parent.value += writeCustomTabForString(length, tabArray[currentMeasure][3], "D") + "\n"
+      parent.value += writeCustomTabForString(length, tabArray[currentMeasure][4], "A") + "\n"
+      parent.value += writeCustomTabForString(length, tabArray[currentMeasure][5], "E") + "\n\n\n"
+      currentMeasure++
+
+      if (i == compositionArray.length - 1) {
+        break
+      }
+    }
+
+  }
+}
+
+function createEmptyStringForTab(length, repeats, string) {
+  let dash = "-  "
+  let txt = `|${dash.repeat(length)}`
+  return `${string}${txt.repeat(repeats)}`
+}
+
+
+function createEmptyTabStructure(length) {
+  console.log(length)
+  let measureLength = length / 2
+  let numMeasures = 3
+  let stringArray = [createEmptyStringForTab(measureLength, numMeasures, "e") + "\n",
+    createEmptyStringForTab(measureLength, numMeasures, "b") + "\n",
+    createEmptyStringForTab(measureLength, numMeasures, "g") + "\n",
+    createEmptyStringForTab(measureLength, numMeasures, "D") + "\n",
+    createEmptyStringForTab(measureLength, numMeasures, "A") + "\n",
+    createEmptyStringForTab(measureLength, numMeasures, "E") + "\n"
+  ]
+  return stringArray
+
+}
+
+
+
 //Scale Functions////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 function setNoteNum(elem, scale) {
   let noteNum;
+  let tuningShift = 0
+  if (elem.dataset.stringNum > 2) {
+    tuningShift = 1
+  }
   noteNum = ((Number(elem.dataset.row) - 1) * tuningInterval) + Number(elem.dataset.col) + 14 + tuningShift
   elem.dataset.noteNum = noteNum
   elem.dataset.note = scale[noteNum % scale.length]
