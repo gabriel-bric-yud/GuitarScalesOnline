@@ -130,7 +130,6 @@ document.addEventListener("mousedown", (e) => {
 })
 
 document.addEventListener('touchstart', (e) => {
-  e.preventDefault()
   if (mousePress == false && touchPress == false) {
     mousePress = true;
     touchPress = true;
@@ -155,6 +154,8 @@ btnRecord.addEventListener("click", (e) => {
   }
 
 })
+
+
 
 btnListen.addEventListener("click", (e) => {
   let songPlayback
@@ -213,16 +214,21 @@ function playOsc(freq) {
 
 //Create Tab Functions////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-function createCustomStringForTab(length, repeats, noteList, stringName) {
-  let dash = " - "
-  let txt = stringName + "|" + dash
+function writeCustomTabForString(length, noteList, stringName) {
+  let dash = "--"
+  let txt = stringName + "|" + "-"
   let currentNote = 0
 
-  for (let i = 0; i < (length) * repeats; i++) {
+  for (let i = 0; i < (length); i++) {
     if (noteList != null && currentNote < noteList.length) {
-      if (noteList[currentNote].index * 4 == i) {
+      if (noteList[currentNote].index * 3 == i) {
+        if (Number(noteList[currentNote].fret) < 10) {
+          txt += "-"
+
+        }
         txt += noteList[currentNote].fret
         currentNote += 1
+        
       }
       else {
         txt += dash
@@ -231,37 +237,45 @@ function createCustomStringForTab(length, repeats, noteList, stringName) {
     else {
       txt += dash
     }
-    if (i >= length && i % length == 0) {
-      txt += "|" + dash
-    }
-
   }  
-  console.log(txt)
   return txt
 }
 
 
 function convertToTab(compositionArray, parent) {
-  let noteList = [[], [], [], [], [], []]
-  let repeats = 2;
-  let length = parent.getAttribute("cols") /4
-  console.log(compositionArray[0])
+  parent.value = ""
+  let length = Math.ceil(parent.getAttribute("cols") / 4.5)
+  let tabArray = []
+  let totalMeasures = Math.ceil(compositionArray.length / 8) 
+  let currentMeasure = 0;
+  let noteCounter = 0
+  parent.setAttribute('rows', `${totalMeasures*8}`);
+
+  for (let i = 0; i < totalMeasures; i++ ) {
+    tabArray.push([[], [], [], [], [], []])
+  }
+
   for (let i = 0; i < compositionArray.length; i++) {
     let currentString = compositionArray[i].dataset.stringNum
     let currentFret = compositionArray[i].dataset.col
-    console.log(currentString)
-    console.log({ fret: currentFret, index: i})
-    noteList[currentString - 1].push({ fret: currentFret, index: i})
+    tabArray[currentMeasure][currentString - 1].push({ fret: currentFret, index: noteCounter})
+    noteCounter + 1 < 8 ? noteCounter++ : noteCounter = 0
+
+    if (noteCounter == 0 && i != 0 || i == compositionArray.length - 1 ) {
+      parent.value += writeCustomTabForString(length, tabArray[currentMeasure][0], "e") + "\n"
+      parent.value += writeCustomTabForString(length, tabArray[currentMeasure][1], "b") + "\n"
+      parent.value += writeCustomTabForString(length, tabArray[currentMeasure][2], "g") + "\n"
+      parent.value += writeCustomTabForString(length, tabArray[currentMeasure][3], "D") + "\n"
+      parent.value += writeCustomTabForString(length, tabArray[currentMeasure][4], "A") + "\n"
+      parent.value += writeCustomTabForString(length, tabArray[currentMeasure][5], "E") + "\n\n\n"
+      currentMeasure++
+
+      if (i == compositionArray.length - 1) {
+        break
+      }
+    }
+
   }
-
-
-  parent.value = createCustomStringForTab(length, repeats, noteList[0], "e") + "\n"
-  parent.value += createCustomStringForTab(length, repeats, noteList[1], "b") + "\n"
-  parent.value += createCustomStringForTab(length, repeats, noteList[2], "g") + "\n"
-  parent.value += createCustomStringForTab(length, repeats, noteList[3], "D") + "\n"
-  parent.value += createCustomStringForTab(length, repeats, noteList[4], "A") + "\n"
-  parent.value += createCustomStringForTab(length, repeats, noteList[5], "E") + "\n"
-
 }
 
 function createEmptyStringForTab(length, repeats, string) {
@@ -284,20 +298,7 @@ function createEpmtyTabStructure(length) {
   ]
   return stringArray
 
-  /** 
-  let txt = createEmptyStringForTab(measureLength, 3, "e") + "\n"
-  txt += createEmptyStringForTab(measureLength, 3, "b") + "\n"
-  txt += createEmptyStringForTab(measureLength, 3, "g") + "\n"
-  txt += createEmptyStringForTab(measureLength, 3, "D") + "\n"
-  txt += createEmptyStringForTab(measureLength, 3, "A") + "\n"
-  txt += createEmptyStringForTab(measureLength, 3, "E") + "\n"
-  */
-  //console.log(txt)
-  //return txt;
 }
-
-
-
 
 
 
@@ -402,6 +403,7 @@ function createCell(col, row) {
         playing = true
         if (recordingInProcess == true) {
           composition.push(cell)
+          
         }
       }
 
