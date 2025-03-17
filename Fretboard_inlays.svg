@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg width="300px" height="1150px" viewBox="0 0 3000 11500" style="stroke-width:15">
+  <linearGradient id="string-pattern">
+   <stop offset="5%" stop-color="#888" />
+   <stop offset="50%" stop-color="#FFF" />
+   <stop offset="95%" stop-color="#888" />
+  </linearGradient>
+<g style="stroke:black;fill:rgb(111,80,0)">
+  <rect x="100" y="50.0" width="1000.0" height="10800"/>
+</g>
+<g style="stroke:black;fill:rgb(192,192,192)">
+  <rect x="100" y="20.0" width="1000.0" height="60"/>
+</g>
+<g style="stroke:black;fill:rgb(192,192,192)">
+  <rect x="100" y="820.0" width="1000.0" height="60"/>
+</g>
+<g style="stroke:black;fill:rgb(192,192,192)">
+  <rect x="100" y="1575.09945014535" width="1000.0" height="60"/>
+</g>
+<g style="stroke:none;fill:rgb(255,255,240)">
+  <circle cx="600.0" cy="1961.45893740149" r="65"/>
+</g>
+<g style="stroke:black;fill:rgb(192,192,192)">
+  <rect x="100" y="2287.81842465763" width="1000.0" height="60"/>
+</g>
+<g style="stroke:black;fill:rgb(192,192,192)">
+  <rect x="100" y="2960.5355568606" width="1000.0" height="60"/>
+</g>
+<g style="stroke:none;fill:rgb(255,255,240)">
+  <circle cx="600.0" cy="3308.01576725424" r="65"/>
+</g>
+<g style="stroke:black;fill:rgb(192,192,192)">
+  <rect x="100" y="3595.49597764788" width="1000.0" height="60"/>
+</g>
+<g style="stroke:black;fill:rgb(192,192,192)">
+  <rect x="100" y="4194.81880839855" width="1000.0" height="60"/>
+</g>
+<g style="stroke:none;fill:rgb(255,255,240)">
+  <circle cx="600.0" cy="4507.66152087317" r="65"/>
+</g>
+<g style="stroke:black;fill:rgb(192,192,192)">
+  <rect x="100" y="4760.50423334779" width="1000.0" height="60"/>
+</g>
+<g style="stroke:black;fill:rgb(192,192,192)">
+  <rect x="100" y="5294.4401750158" width="1000.0" height="60"/>
+</g>
+<g style="stroke:none;fill:rgb(255,255,240)">
+  <circle cx="600.0" cy="5576.42438499478" r="65"/>
+</g>
+<g style="stroke:black;fill:rgb(192,192,192)">
+  <rect x="100" y="5798.40859497375" width="1000.0" height="60"/>
+</g>
+<g style="stroke:black;fill:rgb(192,192,192)">
+  <rect x="100" y="6274.09144097484" width="1000.0" height="60"/>
+</g>
+<g style="stroke:black;fill:rgb(192,192,192)">
+  <rect x="100" y="6723.07626029859" width="1000.0" height="60"/>
+</g>
+<g style="stroke:none;fill:rgb(255,255,240)">
+  <circle cx="350.0" cy="6964.96887917045" r="65"/>
+  <circle cx="850.0" cy="6964.96887917045" r="65"/>
+</g>
+<g style="stroke:black;fill:rgb(192,192,192)">
+  <rect x="100" y="7146.86149804231" width="1000.0" height="60"/>
+</g>
+<g style="stroke:black;fill:rgb(192,192,192)">
+  <rect x="100" y="7546.86149804231" width="1000.0" height="60"/>
+</g>
+<g style="stroke:black;fill:rgb(192,192,192)">
+  <rect x="100" y="7924.41122311498" width="1000.0" height="60"/>
+</g>
+<g style="stroke:none;fill:rgb(255,255,240)">
+  <circle cx="600.0" cy="8132.59096674305" r="65"/>
+</g>
+<g style="stroke:black;fill:rgb(192,192,192)">
+  <rect x="100" y="8280.77071037112" width="1000.0" height="60"/>
+</g>
+<g style="stroke:black;fill:rgb(192,192,192)">
+  <rect x="100" y="8617.12927647261" width="1000.0" height="60"/>
+</g>
+<g style="stroke:none;fill:rgb(255,255,240)">
+  <circle cx="600.0" cy="8805.86938166942" r="65"/>
+</g>
+<g style="stroke:black;fill:rgb(192,192,192)">
+  <rect x="100" y="8934.60948686625" width="1000.0" height="60"/>
+</g>
+<g style="stroke:black;fill:rgb(192,192,192)">
+  <rect x="100" y="9234.27090224158" width="1000.0" height="60"/>
+</g>
+<g style="stroke:none;fill:rgb(255,255,240)">
+  <circle cx="600.0" cy="9405.69225847889" r="65"/>
+</g>
+<g style="stroke:black;fill:rgb(192,192,192)">
+  <rect x="100" y="9517.1136147162" width="1000.0" height="60"/>
+</g>
+<g style="stroke:black;fill:rgb(192,192,192)">
+  <rect x="100" y="9784.08158555021" width="1000.0" height="60"/>
+</g>
+<g style="stroke:none;fill:rgb(255,255,240)">
+  <circle cx="600.0" cy="9940.0736905397" r="65"/>
+</g>
+<g style="stroke:black;fill:rgb(192,192,192)">
+  <rect x="100" y="10036.0657955292" width="1000.0" height="60"/>
+</g>
+<g style="stroke:black;fill:rgb(192,192,192)">
+  <rect x="100" y="10273.9072185297" width="1000.0" height="60"/>
+</g>
+<g style="stroke:black;fill:rgb(192,192,192)">
+  <rect x="100" y="10498.3996281916" width="1000.0" height="60"/>
+</g>
+<g style="stroke:none;fill:rgb(255,255,240)">
+  <circle cx="350.0" cy="10634.3459376275" r="65"/>
+  <circle cx="850.0" cy="10634.3459376275" r="65"/>
+</g>
+<g style="stroke:black;fill:rgb(192,192,192)">
+  <rect x="100" y="10710.2922470635" width="1000.0" height="60"/>
+</g>
+<g style="stroke:none;fill:url(#string-pattern)">
+  <rect x="173.333333333333" y="50.0" width="20" height="10800"/>
+</g>
+<g style="stroke:none;fill:url(#string-pattern)">
+  <rect x="340.0" y="50.0" width="20" height="10800"/>
+</g>
+<g style="stroke:none;fill:url(#string-pattern)">
+  <rect x="506.666666666667" y="50.0" width="20" height="10800"/>
+</g>
+<g style="stroke:none;fill:url(#string-pattern)">
+  <rect x="673.333333333333" y="50.0" width="20" height="10800"/>
+</g>
+<g style="stroke:none;fill:url(#string-pattern)">
+  <rect x="840.0" y="50.0" width="20" height="10800"/>
+</g>
+<g style="stroke:none;fill:url(#string-pattern)">
+  <rect x="1006.66666666667" y="50.0" width="20" height="10800"/>
+</g>
+<g style="stroke:black;fill:rgb(111,80,0)">
+  <rect x="1700" y="50.0" width="1000.0" height="10800"/>
+</g>
+<g style="stroke:black;fill:rgb(192,192,192)">
+  <rect x="1700" y="20.0" width="1000.0" height="60"/>
+</g>
+<g style="stroke:black;fill:rgb(192,192,192)">
+  <rect x="1700" y="820.0" width="1000.0" height="60"/>
+</g>
+<g style="stroke:black;fill:rgb(192,192,192)">
+  <rect x="1700" y="1575.09945014535" width="1000.0" height="60"/>
+</g>
+<g style="stroke:none;fill:rgb(255,255,240)">
+  <circle cx="2200.0" cy="1961.45893740149" r="65"/>
+</g>
+<g style="stroke:black;fill:rgb(192,192,192)">
+  <rect x="1700" y="2287.81842465763" width="1000.0" height="60"/>
+</g>
+<g style="stroke:black;fill:rgb(192,192,192)">
+  <rect x="1700" y="2960.5355568606" width="1000.0" height="60"/>
+</g>
+<g style="stroke:none;fill:rgb(255,255,240)">
+  <circle cx="2200.0" cy="3308.01576725424" r="65"/>
+</g>
+<g style="stroke:black;fill:rgb(192,192,192)">
+  <rect x="1700" y="3595.49597764788" width="1000.0" height="60"/>
+</g>
+<g style="stroke:black;fill:rgb(192,192,192)">
+  <rect x="1700" y="4194.81880839855" width="1000.0" height="60"/>
+</g>
+<g style="stroke:none;fill:rgb(255,255,240)">
+  <circle cx="2200.0" cy="4507.66152087317" r="65"/>
+</g>
+<g style="stroke:black;fill:rgb(192,192,192)">
+  <rect x="1700" y="4760.50423334779" width="1000.0" height="60"/>
+</g>
+<g style="stroke:black;fill:rgb(192,192,192)">
+  <rect x="1700" y="5294.4401750158" width="1000.0" height="60"/>
+</g>
+<g style="stroke:black;fill:rgb(192,192,192)">
+  <rect x="1700" y="5798.40859497375" width="1000.0" height="60"/>
+</g>
+<g style="stroke:none;fill:rgb(255,255,240)">
+  <circle cx="2200.0" cy="6066.25001797429" r="65"/>
+</g>
+<g style="stroke:black;fill:rgb(192,192,192)">
+  <rect x="1700" y="6274.09144097484" width="1000.0" height="60"/>
+</g>
+<g style="stroke:black;fill:rgb(192,192,192)">
+  <rect x="1700" y="6723.07626029859" width="1000.0" height="60"/>
+</g>
+<g style="stroke:none;fill:rgb(255,255,240)">
+  <circle cx="1950.0" cy="6964.96887917045" r="65"/>
+  <circle cx="2450.0" cy="6964.96887917045" r="65"/>
+</g>
+<g style="stroke:black;fill:rgb(192,192,192)">
+  <rect x="1700" y="7146.86149804231" width="1000.0" height="60"/>
+</g>
+<g style="stroke:black;fill:rgb(192,192,192)">
+  <rect x="1700" y="7546.86149804231" width="1000.0" height="60"/>
+</g>
+<g style="stroke:black;fill:rgb(192,192,192)">
+  <rect x="1700" y="7924.41122311498" width="1000.0" height="60"/>
+</g>
+<g style="stroke:none;fill:rgb(255,255,240)">
+  <circle cx="2200.0" cy="8132.59096674305" r="65"/>
+</g>
+<g style="stroke:black;fill:rgb(192,192,192)">
+  <rect x="1700" y="8280.77071037112" width="1000.0" height="60"/>
+</g>
+<g style="stroke:black;fill:rgb(192,192,192)">
+  <rect x="1700" y="8617.12927647261" width="1000.0" height="60"/>
+</g>
+<g style="stroke:none;fill:rgb(255,255,240)">
+  <circle cx="2200.0" cy="8805.86938166942" r="65"/>
+</g>
+<g style="stroke:black;fill:rgb(192,192,192)">
+  <rect x="1700" y="8934.60948686625" width="1000.0" height="60"/>
+</g>
+<g style="stroke:black;fill:rgb(192,192,192)">
+  <rect x="1700" y="9234.27090224158" width="1000.0" height="60"/>
+</g>
+<g style="stroke:none;fill:rgb(255,255,240)">
+  <circle cx="2200.0" cy="9405.69225847889" r="65"/>
+</g>
+<g style="stroke:black;fill:rgb(192,192,192)">
+  <rect x="1700" y="9517.1136147162" width="1000.0" height="60"/>
+</g>
+<g style="stroke:black;fill:rgb(192,192,192)">
+  <rect x="1700" y="9784.08158555021" width="1000.0" height="60"/>
+</g>
+<g style="stroke:black;fill:rgb(192,192,192)">
+  <rect x="1700" y="10036.0657955292" width="1000.0" height="60"/>
+</g>
+<g style="stroke:none;fill:rgb(255,255,240)">
+  <circle cx="2200.0" cy="10184.9865070295" r="65"/>
+</g>
+<g style="stroke:black;fill:rgb(192,192,192)">
+  <rect x="1700" y="10273.9072185297" width="1000.0" height="60"/>
+</g>
+<g style="stroke:black;fill:rgb(192,192,192)">
+  <rect x="1700" y="10498.3996281916" width="1000.0" height="60"/>
+</g>
+<g style="stroke:none;fill:rgb(255,255,240)">
+  <circle cx="1950.0" cy="10634.3459376275" r="65"/>
+  <circle cx="2450.0" cy="10634.3459376275" r="65"/>
+</g>
+<g style="stroke:black;fill:rgb(192,192,192)">
+  <rect x="1700" y="10710.2922470635" width="1000.0" height="60"/>
+</g>
+<g style="stroke:none;fill:url(#string-pattern)">
+  <rect x="1773.33333333333" y="50.0" width="20" height="10800"/>
+</g>
+<g style="stroke:none;fill:url(#string-pattern)">
+  <rect x="1940.0" y="50.0" width="20" height="10800"/>
+</g>
+<g style="stroke:none;fill:url(#string-pattern)">
+  <rect x="2106.66666666667" y="50.0" width="20" height="10800"/>
+</g>
+<g style="stroke:none;fill:url(#string-pattern)">
+  <rect x="2273.33333333333" y="50.0" width="20" height="10800"/>
+</g>
+<g style="stroke:none;fill:url(#string-pattern)">
+  <rect x="2440.0" y="50.0" width="20" height="10800"/>
+</g>
+<g style="stroke:none;fill:url(#string-pattern)">
+  <rect x="2606.66666666667" y="50.0" width="20" height="10800"/>
+</g>
+ <g style="font-size:300;stroke:none;fill:black">
+  <text x="400" y="11300">(1)</text>
+  <text x="2000" y="11300">(2)</text>
+ </g>
+</svg>

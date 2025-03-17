@@ -30,6 +30,7 @@ body {
   text-decoration: none;
 }
 
+
 #dataDisplay {
   display: grid;
   justify-content: center;
@@ -50,6 +51,8 @@ body {
   margin: 10px auto;
   border-radius: 5px;
   background-color: black;
+  background-image: url(Fretboard_inlays.svg);
+  background-repeat: no-repeat;
 }
 
 
@@ -237,5 +240,16 @@ body {
   }
 
   
+}
+
+svg {
+  fill: red;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  stroke: black;
+  stroke-width: 3;
+  width: 100%;
 }
 
